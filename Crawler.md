@@ -29,7 +29,9 @@
     - add hidden url to pool, restart phase2
    
 #### 4. scaling
-  - we allow multiple machine to send scraping request to our system. Considering that, we can set up a load balancer after these machines. our LB will redirect these requests to app servers
+  - we allow multiple machine to send scraping request to our system. Considering that, we can set up a load balancer after these machines. our LB will redirect these requests to app servers  
+    - undelying discussion:
+      - consistent hashing detail, round robin detail
   - app servers will push urls into a shared concurrent queue(pool) for working servers to retrieve tasks from queue.
   - our application server will retrieve task, check uniqueness by comparing with BF, if valid, send GET req to website and start parsing the web content
   - if we find more hidden valid url, app server will push these new urls into the queue. Then extract new tasks
